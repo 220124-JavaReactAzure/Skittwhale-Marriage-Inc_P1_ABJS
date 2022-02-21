@@ -12,7 +12,13 @@ public class Home extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE HOME!!!!!!!!!!</h1>");
+		resp.getWriter().write("<h1>MARRIAGE HOME!!!!!!!!!!</h1>"
+							 + "<div onClick='logout()'>Fake Logout</div>"
+							 + "<script>"
+							 	+ "function logout() {"
+							 		+ "window.location = './login'"
+							 	+ "}"
+							 + "</script>");
 	}
 	
 }
