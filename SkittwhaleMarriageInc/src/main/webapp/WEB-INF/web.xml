@@ -11,9 +11,59 @@
 		<servlet-class>com.revature.servlets.Login</servlet-class>
 	</servlet>
 
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>com.revature.servlets.Register</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Home</servlet-name>
+		<servlet-class>com.revature.servlets.Home</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Employee</servlet-name>
+		<servlet-class>com.revature.servlets.Employee</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Wedding</servlet-name>
+		<servlet-class>com.revature.servlets.Wedding</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>Attendee</servlet-name>
+		<servlet-class>com.revature.servlets.Attendee</servlet-class>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Employee</servlet-name>
+		<url-pattern>/employee</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Wedding</servlet-name>
+		<url-pattern>/wedding</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Attendee</servlet-name>
+		<url-pattern>/attendee</url-pattern>
 	</servlet-mapping>
 
 </web-app>
