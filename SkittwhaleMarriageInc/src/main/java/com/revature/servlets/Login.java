@@ -12,7 +12,17 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE!</h1>");
+		resp.getWriter().write("<h1>MARRIAGE!</h1>"
+							 + "<div onClick='redirectToHome()'>Fake Login(for testing)</div>"
+							 + "<div onClick='redirectToRegister()'>Register</div>"
+							 + "<script>"
+							 	+ "function redirectToRegister() {"
+							 		+ "window.location = './register'"
+							 	+ "}"
+							 	+ "function redirectToHome() {"
+							 		+ "window.location = './home'"
+							 	+ "}"
+							 + "</script>");
 	}
 	
 }
