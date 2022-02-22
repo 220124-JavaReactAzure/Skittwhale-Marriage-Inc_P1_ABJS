@@ -9,30 +9,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class Login extends HttpServlet {
+public class EmployeeRegister extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE!</h1>"
-							 + "<form method='post' action='login'>"
+		resp.getWriter().write("<h1>MARRIAGE EMPLOYEE REGISTER!!!</h1>"
+							 + "<form method='post' action='employee-register'>"
 							 	+ "<label for='username'>Username: </label>"
 							 	+ "<input type='text' id='username' name='username'></input><br/>"
 							 	+ "<label for='password'>Password: </label>"
 							 	+ "<input type='password' id='password' name='password'></input><br/>"
-							 	+ "<input type='submit' value='Login'></input>"
+							 	+ "<input type='submit' value='Register as Employee'></input>"
 							 + "</form>"
-							 + "<div onClick='redirectToHome()'>Fake Login(for testing)</div>"
-							 + "<div onClick='redirectToEmployeeRegister()'>Register as Employee</div>"
-							 + "<div onClick='redirectToClientAttendeeRegister()'>Register as Client</div>"
+							 + "<div onClick='redirectToHome()'>Fake Register(for testing)</div>"
+							 + "<div onClick='redirectToLogin()'>Redirect To Login</div>"
 							 + "<script>"
-							 	+ "function redirectToEmployeeRegister() {"
-							 		+ "window.location = './employee-register';"
-							 	+ "}"
-							 	+ "function redirectToClientAttendeeRegister() {"
-							 		+ "window.location = './client-attendee-register;'"
-							 	+ "}"
 							 	+ "function redirectToHome() {"
 							 		+ "window.location = './home';"
+							 	+ "}"
+							 	+ "function redirectToLogin() {"
+							 		+ "window.location = './login';"
 							 	+ "}"
 							 + "</script>");
 	}
