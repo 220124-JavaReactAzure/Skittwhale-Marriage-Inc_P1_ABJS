@@ -12,8 +12,13 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>Register</servlet-name>
-		<servlet-class>com.revature.servlets.Register</servlet-class>
+		<servlet-name>EmployeeRegister</servlet-name>
+		<servlet-class>com.revature.servlets.EmployeeRegister</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ClientAttendeeRegister</servlet-name>
+		<servlet-class>com.revature.servlets.ClientAttendeeRegister</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -42,8 +47,13 @@
 	</servlet-mapping>
 
 	<servlet-mapping>
-		<servlet-name>Register</servlet-name>
-		<url-pattern>/register</url-pattern>
+		<servlet-name>EmployeeRegister</servlet-name>
+		<url-pattern>/employee-register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ClientAttendeeRegister</servlet-name>
+		<url-pattern>/client-attendee-register</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>
