@@ -1,4 +1,4 @@
-package com.revature.servlets;
+package com.revature.web.servlets;
 
 import java.io.IOException;
 
@@ -8,19 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(value = "/home")
+@WebServlet(value = "/attendee")
 @SuppressWarnings("serial")
-public class Home extends HttpServlet {
+public class Attendee extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE HOME!!!!!!!!!!</h1>"
-							 + "<div onClick='logout()'>Fake Logout</div>"
-							 + "<script>"
-							 	+ "function logout() {"
-							 		+ "window.location = './login'"
-							 	+ "}"
-							 + "</script>");
+		resp.getWriter().write("<h1>MARRIAGE ATTENDEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>");
 	}
 	
 }
