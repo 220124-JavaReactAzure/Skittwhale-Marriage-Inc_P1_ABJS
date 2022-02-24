@@ -9,7 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.revature.web.servlets.Login;
+import com.revature.models.User;
 
 public class HibernateUtil {
 
@@ -25,7 +25,7 @@ public class HibernateUtil {
 			props.load(loader.getResourceAsStream("hibernate.properties"));
 			
 			configuration.setProperties(props);
-			configuration.addAnnotatedClass(Login.class);
+			configuration.addAnnotatedClass(User.class);
 			
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			

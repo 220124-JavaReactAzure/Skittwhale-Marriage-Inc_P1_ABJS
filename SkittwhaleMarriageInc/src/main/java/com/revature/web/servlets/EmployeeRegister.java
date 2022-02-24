@@ -1,11 +1,9 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,7 +55,7 @@ public class EmployeeRegister extends HttpServlet {
 		String password = req.getParameter("password");
 		String email = req.getParameter("email");
 		
-		User newUser = new User(userId, username, password, email, (byte) 0, 1, 1, 1, null);
+		User newUser = new User(userId, username, password, email, false, 1, 1, 1, null);
 		userService.addUser(newUser);
 		
 //		System.out.println("Username: " + username + "\nPassword: " + password);
