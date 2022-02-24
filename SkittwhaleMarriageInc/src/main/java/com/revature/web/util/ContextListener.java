@@ -1,29 +1,30 @@
 package com.revature.web.util;
 
-
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.revature.dao.UserDAO;
 import com.revature.services.UserService;
 import com.revature.web.servlets.Attendee;
 import com.revature.web.servlets.EmployeeRegister;
 
+@WebListener
 public class ContextListener implements ServletContextListener{
 	
 	private final Logger logger = LogManager.getLogger();
-	
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		logger.info("contextInitialized");
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.registerModule(new Hibernate5Module());
 		
 		UserDAO userDAO = new UserDAO();
 		UserService userService=  new UserService(userDAO);
