@@ -45,12 +45,12 @@ public class UserDAO {
 
 	}
 
-	public User findByUsername(String username) {
+	public User findByUsername(User user) {
 
 		try {
 			Session session = HibernateUtil.getSession();
-			User user = session.get(User.class, username);
-			if (username == null) {
+			user = session.get(User.class, user.getUsername());
+			if (user.getUsername() == null) {
 				return null;
 			} else {
 				return user;
