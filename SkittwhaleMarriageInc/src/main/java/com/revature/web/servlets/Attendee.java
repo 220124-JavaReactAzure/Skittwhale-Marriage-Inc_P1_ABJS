@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.services.UserService;
 
-@WebServlet(value = "/attendee")
+
 @SuppressWarnings("serial")
 public class Attendee extends HttpServlet {
 
