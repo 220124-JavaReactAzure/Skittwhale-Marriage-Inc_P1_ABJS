@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.UserDAO;
 import com.revature.services.UserService;
 import com.revature.web.servlets.Attendee;
+import com.revature.web.servlets.EmployeeRegister;
 
 public class ContextListener implements ServletContextListener{
 	
@@ -28,11 +29,12 @@ public class ContextListener implements ServletContextListener{
 		UserService userService=  new UserService(userDAO);
 		
 		Attendee attendeeServlet = new Attendee(userService, mapper);
-//		Employee employeeServlet = new Employee(userService, mapper);
+		EmployeeRegister employeeRegisterServlet = new EmployeeRegister(userService, mapper);
 		
 		ServletContext context = sce.getServletContext();
 		
 		context.addServlet("Attendee", attendeeServlet).addMapping("/attendee");
+		context.addServlet("EmployeeRegister", employeeRegisterServlet).addMapping("/employee-register"); 
 	}
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
