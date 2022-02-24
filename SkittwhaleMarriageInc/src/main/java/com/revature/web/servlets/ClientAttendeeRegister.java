@@ -2,6 +2,7 @@ package com.revature.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.User;
 import com.revature.services.UserService;
 
 @WebServlet(value = "/client-attendee-register")
@@ -48,24 +50,42 @@ public class ClientAttendeeRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
+		
 		boolean isBetrothed = false;
-		
-		
 		if(req.getParameter("betrothed") != null) {
 			isBetrothed = true;
 		}
+		if(isBetrothed) {
+			UUID userId = UUID.randomUUID();
+			String email = req.getParameter("email");
+			User newUser = new User(userId, username, password, email, false, 1, 1, 3, null);
+			userService.addUser(newUser);
+		}
+		else {
+			UUID userId = UUID.randomUUID();
+			String email = req.getParameter("email");
+			User newUser = new User(userId, username, password, email, false, 1, 1, 2, null);
+			userService.addUser(newUser);
+		}
 		
-		System.out.println("Username: " + username + "\nPassword: " + password + "\nBetrothed: " + isBetrothed);
 		
-		PrintWriter writer = resp.getWriter();
 		
-		String htmlResponse = "<html>"
-							+ "<h2>The username you entered is: " + username + "<br/>"
-							+ "Your password is: " + password + "<br/>"
-							+ "Are you getting married: " + isBetrothed + "</h2>"
-							+ "</html>";
 		
-		writer.println(htmlResponse);
+		
+		
+		
+		
+//		System.out.println("Username: " + username + "\nPassword: " + password + "\nBetrothed: " + isBetrothed);
+//		
+//		PrintWriter writer = resp.getWriter();
+//		
+//		String htmlResponse = "<html>"
+//							+ "<h2>The username you entered is: " + username + "<br/>"
+//							+ "Your password is: " + password + "<br/>"
+//							+ "Are you getting married: " + isBetrothed + "</h2>"
+//							+ "</html>";
+//		
+//		writer.println(htmlResponse);
 	}
 	
 }

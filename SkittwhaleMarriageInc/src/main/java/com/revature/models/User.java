@@ -79,6 +79,11 @@ public class User {
 		this.usertypeid = usertypeid;
 		this.weddingid = weddingid;
 	}
+	public User(String username, String password)
+	{
+		this.username = username;
+		this.password = password;
+	}
 
 	public UUID getId() {
 		return id;
