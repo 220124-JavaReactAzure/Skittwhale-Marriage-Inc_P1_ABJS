@@ -18,17 +18,15 @@ public class UserDAO {
 		try {
 			Session session = HibernateUtil.getSession();
 			session.save(user);
-			
-			
+
 			return true;
-		} catch (HibernateException | IOException e){
+		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return false;
-		}finally {
+		} finally {
 			HibernateUtil.closeSession();
 		}
-		
-		
+
 	}
 
 	public List<User> getAllUsers() {
@@ -36,23 +34,41 @@ public class UserDAO {
 			Session session = HibernateUtil.getSession();
 			List<User> users = session.createQuery("FROM username").list();
 			return users;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}finally {
+		} finally {
 			HibernateUtil.closeSession();
 		}
-		
+
+	}
+
+	public User findByUsername(String username) {
+
+		try {
+			Session session = HibernateUtil.getSession();
+			User user = session.get(User.class, username);
+			if (username == null) {
+				return null;
+			} else {
+				return user;
+			}
+
+		} catch (HibernateException | IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	public void updateUserWithSessionMethod(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void updateUserWithHQL(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
