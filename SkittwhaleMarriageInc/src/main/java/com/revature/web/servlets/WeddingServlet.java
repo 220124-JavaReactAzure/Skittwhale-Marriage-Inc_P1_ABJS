@@ -12,10 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.services.UserService;
 
 @SuppressWarnings("serial")
-public class Wedding extends HttpServlet {
+public class WeddingServlet extends HttpServlet {
 	private final UserService userService;
 	private final ObjectMapper mapper;
-	public Wedding(UserService userService, ObjectMapper mapper) {
+	public WeddingServlet(UserService userService, ObjectMapper mapper) {
 		this.userService = userService;
 		this.mapper = mapper;
 	}

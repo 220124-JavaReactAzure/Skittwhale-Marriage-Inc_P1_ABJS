@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.revature.dao.UserDAO;
-import com.revature.web.servlets.Wedding;
+import com.revature.web.servlets.WeddingServlet;
 import com.revature.services.UserService;
 import com.revature.web.servlets.Attendee;
 import com.revature.web.servlets.ChooseMeal;
@@ -54,7 +54,7 @@ public class ContextListener implements ServletContextListener{
 		Login loginServlet = new Login(userService,mapper);
 		VenueInformation venueInformationservlet = new VenueInformation(userService, mapper);
 		Venues venueServlet = new Venues(userService, mapper);
-		Wedding weddingServlet = new Wedding(userService, mapper);
+		WeddingServlet weddingServlet = new WeddingServlet(userService, mapper);
 		WeddingBudget weddingBudgetServlet = new WeddingBudget(userService, mapper);
 		
 		ServletContext context = sce.getServletContext();
