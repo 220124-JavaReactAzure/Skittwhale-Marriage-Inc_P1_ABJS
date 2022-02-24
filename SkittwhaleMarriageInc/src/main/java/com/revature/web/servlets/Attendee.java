@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.services.UserService;
 
-
 @SuppressWarnings("serial")
 public class Attendee extends HttpServlet {
 
