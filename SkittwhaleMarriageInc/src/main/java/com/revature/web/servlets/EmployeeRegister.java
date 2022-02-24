@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
@@ -17,9 +18,11 @@ import com.revature.services.UserService;
 public class EmployeeRegister extends HttpServlet {
 
 	private UserService userService;
+	private ObjectMapper mapper;
 
-	public EmployeeRegister(UserService userService) {
+	public EmployeeRegister(UserService userService, ObjectMapper mapper) {
 		this.userService = userService;
+		this.mapper = mapper;
 	}
 	
 	@Override
