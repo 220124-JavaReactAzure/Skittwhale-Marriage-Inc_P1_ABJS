@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 
 @Entity
 @Table(name="users")
@@ -18,6 +20,7 @@ public class User {
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(name="userid", updatable = false, nullable = false, columnDefinition = "VARCHAR")
+	@Type(type = "uuid-char")
 	private UUID id;
 
 	@Column(name="username")
