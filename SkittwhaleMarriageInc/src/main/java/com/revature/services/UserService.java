@@ -24,7 +24,7 @@ public class UserService {
 	public User getUserById(int id) {
 		return userDAO.getUserByID;
 	}
-	public User findByUsername(User user) {
+	public boolean findByUsername(User user) {
 		return userDAO.findByUsername(user);
 	}
 	

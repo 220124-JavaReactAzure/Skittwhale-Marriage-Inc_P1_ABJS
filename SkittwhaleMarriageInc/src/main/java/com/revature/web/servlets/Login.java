@@ -55,7 +55,25 @@ public class Login extends HttpServlet {
 		String password = req.getParameter("password");
 		
 		User newUser = new User(username, password);
-		userService.findByUsername(newUser);
+		if(userService.findByUsername(newUser)) {
+			switch(newUser.getUsertypeid()) {
+			case 1:
+				resp.sendRedirect("/employee");
+				break;
+			case 2:
+				resp.sendRedirect("/attendee");
+				break;
+			case 3:
+				resp.sendRedirect("/wedding");
+				break;
+			default:
+				System.out.println("This user has no type id");
+				resp.sendRedirect("/login");
+				break;
+			}
+		}
+		
+		
 		/*System.out.println("Username: " + username + "\nPassword: " + password);
 		
 		PrintWriter writer = resp.getWriter();
