@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -154,5 +155,26 @@ public class User {
 				+ plusone + ", mealid=" + mealid + ", plusonemealid=" + plusonemealid + ", usertypeid=" + usertypeid
 				+ ", weddingid=" + weddingid + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id, mealid, password, plusone, plusonemealid, username, usertypeid, weddingid);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && mealid == other.mealid
+				&& Objects.equals(password, other.password) && plusone == other.plusone
+				&& plusonemealid == other.plusonemealid && Objects.equals(username, other.username)
+				&& usertypeid == other.usertypeid && Objects.equals(weddingid, other.weddingid);
+	}
+	
 
 }
