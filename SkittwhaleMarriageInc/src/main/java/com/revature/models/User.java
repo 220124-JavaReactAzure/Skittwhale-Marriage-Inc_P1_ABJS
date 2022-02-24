@@ -34,7 +34,7 @@ public class User {
 	private String email;
 
 	@Column(name="plusone")
-	private byte plusone;
+	private boolean plusone;
 
 	@Column(name="mealid")
 	private int mealid;
@@ -53,7 +53,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(UUID id, String username, String userpassword, String email, byte plusone, int mealid,
+	public User(UUID id, String username, String userpassword, String email, boolean plusone, int mealid,
 			int plusonemealid, int usertypeid, String weddingid) {
 		super();
 		this.id = id;
@@ -67,7 +67,7 @@ public class User {
 		this.weddingid = weddingid;
 	}
 
-	public User(String username, String password, String email, byte plusone, int mealid, int plusonemealid,
+	public User(String username, String password, String email, boolean plusone, int mealid, int plusonemealid,
 			int usertypeid, String weddingid) {
 		super();
 		this.username = username;
@@ -112,11 +112,11 @@ public class User {
 		this.email = email;
 	}
 
-	public byte isPlusone() {
+	public boolean isPlusone() {
 		return plusone;
 	}
 
-	public void setPlusone(byte plusone) {
+	public void setPlusone(boolean plusone) {
 		this.plusone = plusone;
 	}
 
