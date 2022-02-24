@@ -8,7 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.services.UserService;
+
 public class ChooseMeal extends HttpServlet {
+	private final UserService userService;
+	private final ObjectMapper mapper;
+	
+	public ChooseMeal(UserService userService, ObjectMapper mapper) {
+		this.userService = userService;
+		this.mapper = mapper;
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("");
