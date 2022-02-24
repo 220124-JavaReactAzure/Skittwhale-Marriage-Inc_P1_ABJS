@@ -18,18 +18,31 @@ public class UserDAO {
 		try {
 			Session session = HibernateUtil.getSession();
 			session.save(user);
-			HibernateUtil.closeSession();
+			
 			
 			return true;
 		} catch (HibernateException | IOException e){
 			e.printStackTrace();
 			return false;
+		}finally {
+			HibernateUtil.closeSession();
 		}
+		
+		
 	}
 
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Session session = HibernateUtil.getSession();
+			List<User> users = session.createQuery("FROM username").list();
+			return users;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}finally {
+			HibernateUtil.closeSession();
+		}
+		
 	}
 
 	public void updateUserWithSessionMethod(User user) {
