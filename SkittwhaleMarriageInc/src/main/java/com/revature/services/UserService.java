@@ -24,6 +24,9 @@ public class UserService {
 	public User getUserById(int id) {
 		return userDAO.getUserByID;
 	}
+	public User findByUsername(User user) {
+		return userDAO.findByUsername(user);
+	}
 	
 	public void updateUserWithSessionMethod(User user) {
 		userDAO.updateUserWithSessionMethod(user);

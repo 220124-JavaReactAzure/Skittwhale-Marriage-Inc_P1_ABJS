@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.User;
 import com.revature.services.UserService;
 
 @SuppressWarnings("serial")
@@ -53,7 +54,9 @@ public class Login extends HttpServlet {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		
-		System.out.println("Username: " + username + "\nPassword: " + password);
+		User newUser = new User(username, password);
+		userService.findByUsername(newUser);
+		/*System.out.println("Username: " + username + "\nPassword: " + password);
 		
 		PrintWriter writer = resp.getWriter();
 		
@@ -63,6 +66,7 @@ public class Login extends HttpServlet {
 							+ "</html>";
 		
 		writer.println(htmlResponse);
+		*/
 	}
 	
 }
