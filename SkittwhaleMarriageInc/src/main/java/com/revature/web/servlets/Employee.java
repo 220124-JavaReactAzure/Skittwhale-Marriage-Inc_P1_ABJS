@@ -72,12 +72,15 @@ public class Employee extends HttpServlet {
 			servicename = req.getParameter("venuename");
 			Services existingServ = servService.getServicesById(serviceid);
 			if (existingServ == null) {
-				message = "Venue added";
 				servicecost = Double.parseDouble(req.getParameter("venuecost"));
 				Services venueserv = new Services(serviceid, servicename, servicecost, servicetype);
-				servService.addService(venueserv);
-				resp.sendRedirect("./employee");
-
+				if(servService.addService(venueserv)) {
+					message = "Venue added";
+					resp.sendRedirect("./employee");					
+				} else {
+					message = "Servicename already exists";
+					resp.sendRedirect("./employee");
+				}
 			} else {
 				message = "Servicename already exists";
 				resp.sendRedirect("./employee");
@@ -90,14 +93,18 @@ public class Employee extends HttpServlet {
 			servicename = req.getParameter("floristname");
 			Services existingServ2 = servService.getServicesById(serviceid);
 			if (existingServ2 == null) {
-				message = "Florist servicename already exists";
-				resp.sendRedirect("./employee");
-			} else {
-				message = "Florist added";
 				servicecost = Double.parseDouble(req.getParameter("floristcost"));
 				Services floristserv = new Services(serviceid, servicename, servicecost, servicetype);
-				servService.addService(floristserv);
+				if(servService.addService(floristserv)) {
+					message = "Florist added";
+					resp.sendRedirect("./employee");
+				} else {
+					resp.sendRedirect("./employee");
+					message = "Florist servicename already exists";
+				}
+			} else {
 				resp.sendRedirect("./employee");
+				message = "Florist servicename already exists";
 			}
 
 			break;
@@ -106,13 +113,17 @@ public class Employee extends HttpServlet {
 			servicename = req.getParameter("musicianname");
 			Services existingServ3 = servService.getServicesById(serviceid);
 			if (existingServ3 == null) {
-				message = "Musician servicename already exists";
-				resp.sendRedirect("./employee");
-			} else {
-				message = "Musician added";
 				servicecost = Double.parseDouble(req.getParameter("musiciancost"));
 				Services musicianserv = new Services(serviceid, servicename, servicecost, servicetype);
-				servService.addService(musicianserv);
+				if(servService.addService(musicianserv)) {					
+					message = "Musician added";
+					resp.sendRedirect("./employee");
+				} else {
+					message = "Musician servicename already exists";
+					resp.sendRedirect("./employee");
+				}
+			} else {				
+				message = "Musician servicename already exists";
 				resp.sendRedirect("./employee");
 			}
 
@@ -122,13 +133,17 @@ public class Employee extends HttpServlet {
 			servicename = req.getParameter("caterername");
 			Services existingSer4 = servService.getServicesById(serviceid);
 			if (existingSer4 == null) {
-				message = "Caterer servicename already exists";
-				resp.sendRedirect("./employee");
-			} else {
-				message = "Caterer added";
 				servicecost = Double.parseDouble(req.getParameter("caterercost"));
 				Services catererserv = new Services(serviceid, servicename, servicecost, servicetype);
-				servService.addService(catererserv);
+				if(servService.addService(catererserv)) {
+					message = "Caterer added";
+					resp.sendRedirect("./employee");					
+				} else {
+					message = "Caterer servicename already exists";
+					resp.sendRedirect("./employee");
+				}
+			} else {				
+				message = "Caterer servicename already exists";
 				resp.sendRedirect("./employee");
 			}
 
@@ -138,14 +153,18 @@ public class Employee extends HttpServlet {
 			servicename = req.getParameter("photographername");
 			Services existingServ5 = servService.getServicesById(serviceid);
 			if (existingServ5 == null) {
-				message = "Photographer servicename already exists";
-				resp.sendRedirect("./employee");
-			} else {
-				message = "Photographer added";
 				servicecost = Double.parseDouble(req.getParameter("photographercost"));
 				Services photographerserv = new Services(serviceid, servicename, servicecost, servicetype);
-				servService.addService(photographerserv);
-				resp.sendRedirect("./employee");
+				if(servService.addService(photographerserv)) {
+					message = "Photographer added";
+					resp.sendRedirect("./employee");					
+				} else {
+					message = "Photographer servicename already exists";
+					resp.sendRedirect("./employee");	
+				}
+			} else {
+				message = "Photographer servicename already exists";
+				resp.sendRedirect("./employee");				
 			}
 
 			break;

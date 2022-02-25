@@ -21,9 +21,9 @@ import com.revature.services.WeddingService;
 @SuppressWarnings("serial")
 public class WeddingServlet extends HttpServlet {
 	private final UserService userService;
-	private final ObjectMapper mapper;
 	private final ServicesService servService;
 	private final WeddingService weddService;
+	private final ObjectMapper mapper;
 
 	private List<Services> servOptions = new ArrayList<>();
 
@@ -56,28 +56,51 @@ public class WeddingServlet extends HttpServlet {
 				photographers += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";
 			}
 		}
-		resp.getWriter().write("<h1>Plan your Marriage</h1>" + "<form method='post' action='wedding'>"
-				+ "<label for='weddingname'>Wedding Name: </label>"
-				+ "<input type='text' id='weddingname' name='weddingname'></input><br/>"
-				+ "<label for='weddingdate'>Set your Date: </label>"
-				+ "<input type='text' id='weddingdate' name='weddingdate'></input><br/>"
-				+ "<label for='budget'>Set your Budget: </label>"
-				+ "<input type='text' id='budget' name='budget'></input><br/>"
-				+ "<label for='venues'>Select your Venue: </label>" + "<select id='venues' name='venues'>"
-				+ venues
-				+ "</select><br/>" + "<label for='caterers'>Select your Caterer: </label>"
-				+ "<select id='caterers' name='caterers'>"
-				+ caterers
-				+ "</select><br/>" + "<label for='florists'>Select your Florist: </label>"
-				+ "<select id='florists' name='florists'>"
-				+ florists
-				+ "</select><br/>" + "<label for='musicians'>Select your Musician: </label>"
-				+ "<select id='musicians' name='musicians'>"
-				+ musicians
-				+ "</select><br/>" + "<label for='photographers'>Select your Photographer: </label>"
-				+ "<select id='photographers' name='photographers'>"
-				+ photographers
-				+ "</select><br/>" + "<input type='submit' value='Create your Wedding'></input>" + "</form>");
+		resp.getWriter().write("<h1>Plan your Marriage</h1>" 
+							 + "<form method='post' action='wedding'>"
+							 	+ "<label for='weddingname'>Wedding Name: </label>"
+							 	+ "<input type='text' id='weddingname' name='weddingname'></input><br/>"
+							 	+ "<label for='weddingdate'>Set your Date: </label>"
+							 	+ "<input type='text' id='weddingdate' name='weddingdate'></input><br/>"
+							 	+ "<label for='budget'>Set your Budget: </label>"
+							 	+ "<input type='number' id='budget' name='budget'></input><br/>"
+							 	+ "<label for='venues'>Select your Venue: </label>" 
+							 	+ "<select id='venues' name='venues'>"
+							 		+ venues
+							 	+ "</select><br/>" 
+							 	+ "<label for='caterers'>Select your Caterer: </label>"
+							 	+ "<select id='caterers' name='caterers'>"
+							 		+ caterers
+							 	+ "</select><br/>" 
+							 	+ "<label for='florists'>Select your Florist: </label>"
+							 	+ "<select id='florists' name='florists'>"
+							 		+ florists
+							 	+ "</select><br/>" 
+							 	+ "<label for='musicians'>Select your Musician: </label>"
+							 	+ "<select id='musicians' name='musicians'>"
+							 		+ musicians
+							 	+ "</select><br/>" 
+							 	+ "<label for='photographers'>Select your Photographer: </label>"
+							 	+ "<select id='photographers' name='photographers'>"
+							 		+ photographers
+							 	+ "</select><br/>" 
+							 	+ "<input type='submit' value='Create your Wedding'></input>" 
+							 + "</form>");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String weddingname = req.getParameter("weddingname");
+		String weddingdate = req.getParameter("weddingdate");
+		double budget = Double.parseDouble(req.getParameter("budget"));
+		String venue = req.getParameter("venues");
+		String caterer = req.getParameter("caterers");
+		String florist = req.getParameter("florists");
+		String musician = req.getParameter("musicians");
+		String photographer = req.getParameter("photographers");
+		
+		Weddings newWedding = new Weddings(weddingname, weddingname, weddingdate, budget, venue, caterer, florist, musician, photographer);
+		weddService.addWedding(newWedding);
 	}
 
 }
