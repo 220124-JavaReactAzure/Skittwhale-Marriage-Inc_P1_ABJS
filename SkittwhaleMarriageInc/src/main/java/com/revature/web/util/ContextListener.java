@@ -55,20 +55,20 @@ public class ContextListener implements ServletContextListener{
 		//servlets
 		Home homeServlet = new Home(userService, mapper);
 		Attendee attendeeServlet = new Attendee(userService, mapper);
-		ChooseMeal chooseMealServlet = new ChooseMeal(userService, mapper);
+		ChooseMeal chooseMealServlet = new ChooseMeal(userService, servService, weddService, mapper);
 		ClientAttendeeRegister clientAttendeeRegisterServlet = new ClientAttendeeRegister(userService, mapper);
-		ConfirmationCancellation confirmationCancellationServlet = new ConfirmationCancellation(userService, mapper);
-		ContactInformation contactInformationServlet = new ContactInformation(userService, mapper);
+		ConfirmationCancellation confirmationCancellationServlet = new ConfirmationCancellation(userService, servService, weddService, mapper);
+		ContactInformation contactInformationServlet = new ContactInformation(userService, servService, weddService, mapper);
 		EmployeeRegister employeeRegisterServlet = new EmployeeRegister(userService, mapper);
 		Employee employeeServlet = new Employee(userService, mapper); 
-		Florists floristsServlet = new Florists(userService, mapper);
+		Florists floristsServlet = new Florists(userService, servService, weddService, mapper);
 		Login loginServlet = new Login(userService,mapper);
-		Musicians musicianServlet = new Musicians(userService,mapper);
-		Photographers photographerServlet = new Photographers(userService, mapper);
-		VenueInformation venueInformationservlet = new VenueInformation(userService, mapper);
-		Venues venueServlet = new Venues(userService, mapper);
-		WeddingServlet weddingServlet = new WeddingServlet(userService, mapper);
-		WeddingBudget weddingBudgetServlet = new WeddingBudget(userService, mapper);
+		Musicians musicianServlet = new Musicians(userService, servService, weddService, mapper);
+		Photographers photographerServlet = new Photographers(userService, servService, weddService, mapper);
+		VenueInformation venueInformationservlet = new VenueInformation(userService, servService, weddService, mapper);
+		Venues venueServlet = new Venues(userService, servService, weddService, mapper);
+		WeddingServlet weddingServlet = new WeddingServlet(userService, servService, weddService, mapper);
+		WeddingBudget weddingBudgetServlet = new WeddingBudget(userService, servService, weddService, mapper);
 		
 		ServletContext context = sce.getServletContext();
 		

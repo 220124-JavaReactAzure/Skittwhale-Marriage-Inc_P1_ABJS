@@ -9,15 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.services.ServicesService;
 import com.revature.services.UserService;
+import com.revature.services.WeddingService;
 
 @SuppressWarnings("serial")
 public class WeddingServlet extends HttpServlet {
 	private final UserService userService;
 	private final ObjectMapper mapper;
-	public WeddingServlet(UserService userService, ObjectMapper mapper) {
+	private final ServicesService servService;
+	private final WeddingService weddService;
+	
+	public WeddingServlet(UserService userService, ServicesService servService, WeddingService weddService, ObjectMapper mapper) {
 		this.userService = userService;
 		this.mapper = mapper;
+		this.servService = servService;
+		this.weddService = weddService;
 	}
 
 	@Override

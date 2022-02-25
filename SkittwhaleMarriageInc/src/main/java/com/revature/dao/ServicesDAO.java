@@ -43,11 +43,9 @@ public class ServicesDAO {
 		} finally {
 			HibernateUtil.closeSession();
 		}
-
 	}
 
 	public Services findByServicesId(String serviceId) {
-
 		try {
 			Session session = HibernateUtil.getSession();
 			Services serv = session.get(Services.class, serviceId);
