@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
 							 		+ "window.location = './employee-register';"
 							 	+ "}"
 							 	+ "function redirectToClientAttendeeRegister() {"
-							 		+ "window.location = './client-attendee-register;'"
+							 		+ "window.location = './client-attendee-register';"
 							 	+ "}"
 							 	+ "function redirectToHome() {"
 							 		+ "window.location = './home';"
