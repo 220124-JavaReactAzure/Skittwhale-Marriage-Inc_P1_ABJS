@@ -38,6 +38,7 @@ public class Attendee extends HttpServlet {
 							 	+ "</select><br/>"
 							 	+ "<label for='email'>Email: </label>"
 							 	+ "<input type='text' id='email' name='email'></input>"
+							 	+ "<input type='checkbox' id='plusone' name='plusone>Will you bring another guest? </input>"
 							 	+ "<input type='submit' value='Attend the Wedding'></input>"
 							 + "</form>");
 	}
