@@ -24,8 +24,13 @@ public class UserService {
 	public User getUserById(int id) {
 		return userDAO.getUserByID;
 	}
+<<<<<<< HEAD
+	public boolean findByUsername(User user) {
+		return userDAO.findByEmail(user);
+=======
 	public User findByUsername(User user) {
 		return userDAO.findByUsername(user);
+>>>>>>> 94e3fa1fc56f512691090032e1429658a4f3213c
 	}
 	
 	public void updateUserWithSessionMethod(User user) {

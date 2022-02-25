@@ -45,6 +45,16 @@ public class UserDAO {
 
 	}
 
+<<<<<<< HEAD
+	public boolean findByEmail(User user) {
+
+		try {
+			Session session = HibernateUtil.getSession();
+
+			user = session.get(User.class, user.getEmail());
+			if (user.getEmail() == null) {
+				return false;
+=======
 	public User findByUsername(User user) {
 
 		try {
@@ -52,13 +62,20 @@ public class UserDAO {
 			user = session.get(User.class, user.getUsername());
 			if (user.getUsername() == null) {
 				return null;
+>>>>>>> 94e3fa1fc56f512691090032e1429658a4f3213c
 			} else {
 				return user;
 			}
 
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
+<<<<<<< HEAD
+			return false;
+		}finally {
+			HibernateUtil.closeSession();
+=======
 			return null;
+>>>>>>> 94e3fa1fc56f512691090032e1429658a4f3213c
 		}
 
 	}
