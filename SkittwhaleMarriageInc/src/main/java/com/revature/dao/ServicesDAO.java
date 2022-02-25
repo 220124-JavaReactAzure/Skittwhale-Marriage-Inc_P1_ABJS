@@ -2,22 +2,25 @@ package com.revature.dao;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
+import com.revature.models.Services;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class ServicesDAO {
 
-	public User getUserByID;
+	
 
-	public boolean addUser(User user) {
+	public boolean addService(Services serv) {
 		try {
 			Session session = HibernateUtil.getSession();
-			session.save(user);
+			session.save(serv);
 
 			return true;
 		} catch (HibernateException | IOException e) {
@@ -29,11 +32,11 @@ public class ServicesDAO {
 
 	}
 
-	public List<User> getAllUsers() {
+	public List<Services> getAllServices() {
 		try {
 			Session session = HibernateUtil.getSession();
-			List<User> users = session.createQuery("FROM username").list();
-			return users;
+			List<Services> serv = session.createQuery("FROM serviceid").list();
+			return serv;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -43,30 +46,44 @@ public class ServicesDAO {
 
 	}
 
-	public User findByUsername(String username) {
+	public Services findByServicesId(String serviceId) {
 
 		try {
 			Session session = HibernateUtil.getSession();
-			User user = session.get(User.class, username);
-			if (username == null) {
+			Services serv = session.get(Services.class, serviceId);
+			if (serviceId == null) {
 				return null;
 			} else {
-				return user;
+				return serv;
 			}
 
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return null;
+		}finally {
+			HibernateUtil.closeSession();
 		}
 
 	}
 
-	public void updateUserWithSessionMethod(User user) {
-		// TODO Auto-generated method stub
+	public void updateServiceWithSessionMethod(Services serv) {
+		try {
+			Session session = HibernateUtil.getSession();
+			Transaction transaction = session.beginTransaction();
+			session.merge(serv);
+			transaction.commit();
+			
+
+		} catch (HibernateException | IOException e) {
+			e.printStackTrace();
+			Logger.getLogger("").warning("did not persist");
+		}finally {
+			HibernateUtil.closeSession();
+		}
 
 	}
 
-	public void updateUserWithHQL(User user) {
+	public void updateServiceWithHQL(Services serv) {
 		// TODO Auto-generated method stub
 
 	}
