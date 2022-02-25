@@ -63,15 +63,19 @@ public class ServicesDAO {
 
 	}
 	
-	public String findByServicesName(String serviceName) {
+	public Services findByServicesName(String serviceName) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Services serv = session.get(Services.class, serviceName);
-			return serv.getServiceName();
+			if (serviceName == null) {
+				return null;
+			} else {
+				return serv;
+			}
 
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
-			return "";
+			return null;
 		}finally {
 			HibernateUtil.closeSession();
 		}

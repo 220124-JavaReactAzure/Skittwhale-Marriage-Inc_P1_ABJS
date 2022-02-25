@@ -70,74 +70,82 @@ public class Employee extends HttpServlet {
 		case (1):
 			serviceid = req.getParameter("venuename");
 			servicename = req.getParameter("venuename");
-
-			if (servicename.equals(servService.getServicesByName(servicename))) {
-				message = "Servicename already exists";
-				resp.sendRedirect("./employee");
-			} else {
-				message = "";
+			Services existingServ = servService.getServicesById(serviceid);
+			if (existingServ == null) {
+				message = "Venue added";
 				servicecost = Double.parseDouble(req.getParameter("venuecost"));
 				Services venueserv = new Services(serviceid, servicename, servicecost, servicetype);
 				servService.addService(venueserv);
+				resp.sendRedirect("./employee");
+
+			} else {
+				message = "Servicename already exists";
+				resp.sendRedirect("./employee");
+
 			}
 			break;
 
-		case (2): 
+		case (2):
 			serviceid = req.getParameter("floristname");
 			servicename = req.getParameter("floristname");
-			if (servicename.equals(servService.getServicesByName(servicename))) {
+			Services existingServ2 = servService.getServicesById(serviceid);
+			if (existingServ2 == null) {
 				message = "Florist servicename already exists";
 				resp.sendRedirect("./employee");
 			} else {
-				message = "";
-
+				message = "Florist added";
 				servicecost = Double.parseDouble(req.getParameter("floristcost"));
 				Services floristserv = new Services(serviceid, servicename, servicecost, servicetype);
 				servService.addService(floristserv);
+				resp.sendRedirect("./employee");
 			}
 
 			break;
 		case (3):
 			serviceid = req.getParameter("musicianname");
 			servicename = req.getParameter("musicianname");
-			if (servicename.equals(servService.getServicesByName(servicename))) {
+			Services existingServ3 = servService.getServicesById(serviceid);
+			if (existingServ3 == null) {
 				message = "Musician servicename already exists";
 				resp.sendRedirect("./employee");
 			} else {
-				message = "";
-
+				message = "Musician added";
 				servicecost = Double.parseDouble(req.getParameter("musiciancost"));
 				Services musicianserv = new Services(serviceid, servicename, servicecost, servicetype);
 				servService.addService(musicianserv);
+				resp.sendRedirect("./employee");
 			}
 
 			break;
 		case (4):
 			serviceid = req.getParameter("caterername");
 			servicename = req.getParameter("caterername");
-			if (servicename.equals(servService.getServicesByName(servicename))) {
+			Services existingSer4 = servService.getServicesById(serviceid);
+			if (existingSer4 == null) {
 				message = "Caterer servicename already exists";
 				resp.sendRedirect("./employee");
 			} else {
-
+				message = "Caterer added";
 				servicecost = Double.parseDouble(req.getParameter("caterercost"));
 				Services catererserv = new Services(serviceid, servicename, servicecost, servicetype);
 				servService.addService(catererserv);
+				resp.sendRedirect("./employee");
 			}
 
 			break;
 		case (5):
 			serviceid = req.getParameter("photographername");
 			servicename = req.getParameter("photographername");
-			if (servicename.equals(servService.getServicesByName(servicename))) {
+			Services existingServ5 = servService.getServicesById(serviceid);
+			if (existingServ5 == null) {
 				message = "Photographer servicename already exists";
 				resp.sendRedirect("./employee");
 			} else {
-				message = "";
-
+				message = "Photographer added";
 				servicecost = Double.parseDouble(req.getParameter("photographercost"));
 				Services photographerserv = new Services(serviceid, servicename, servicecost, servicetype);
 				servService.addService(photographerserv);
+				resp.sendRedirect("./employee");
 			}
 
 			break;
