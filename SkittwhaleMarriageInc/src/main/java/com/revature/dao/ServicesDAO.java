@@ -10,7 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.models.Services;
-import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class ServicesDAO {
@@ -18,8 +17,9 @@ public class ServicesDAO {
 	public boolean addService(Services serv) {
 		try {
 			Session session = HibernateUtil.getSession();
+			Transaction transaction = session.beginTransaction();
 			session.save(serv);
-
+			transaction.commit();
 			return true;
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
