@@ -8,20 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "services")
+@Table(name="services")
 public class Services {
 
 	@Id
-	@Column(name = "serviceid", unique = true, nullable = false)
+	@Column(name="serviceid", unique=true, nullable=false)
 	private String serviceId;
 
-	@Column(name = "servicename", unique = true)
+	@Column(name="servicename", unique=true)
 	private String serviceName;
 
-	@Column(name = "servicecost")
+	@Column(name="servicecost")
 	private double serviceCost;
 
-	@Column(name = "servicetypeid")
+	@Column(name="servicetypeid")
 	private int serviceTypeId;
 
 	public Services(String serviceId, String serviceName, double serviceCost, int serviceTypeId) {
