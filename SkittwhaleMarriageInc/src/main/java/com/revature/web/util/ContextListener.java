@@ -10,9 +10,13 @@ import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.revature.dao.ServicesDAO;
 import com.revature.dao.UserDAO;
+import com.revature.dao.WeddingDAO;
 import com.revature.web.servlets.WeddingServlet;
+import com.revature.services.ServicesService;
 import com.revature.services.UserService;
+import com.revature.services.WeddingService;
 import com.revature.web.servlets.Attendee;
 import com.revature.web.servlets.ChooseMeal;
 import com.revature.web.servlets.ClientAttendeeRegister;
@@ -23,6 +27,8 @@ import com.revature.web.servlets.EmployeeRegister;
 import com.revature.web.servlets.Florists;
 import com.revature.web.servlets.Home;
 import com.revature.web.servlets.Login;
+import com.revature.web.servlets.Musicians;
+import com.revature.web.servlets.Photographers;
 import com.revature.web.servlets.VenueInformation;
 import com.revature.web.servlets.Venues;
 import com.revature.web.servlets.WeddingBudget;
@@ -39,7 +45,12 @@ public class ContextListener implements ServletContextListener{
 		mapper.registerModule(new Hibernate5Module());
 		
 		UserDAO userDAO = new UserDAO();
+		ServicesDAO servDAO = new ServicesDAO();
+		WeddingDAO wedDAO = new WeddingDAO();
 		UserService userService=  new UserService(userDAO);
+		ServicesService servService = new ServicesService(servDAO);
+		WeddingService weddService = new WeddingService(wedDAO);
+		
 		
 		//servlets
 		Home homeServlet = new Home(userService, mapper);
@@ -52,6 +63,8 @@ public class ContextListener implements ServletContextListener{
 		Employee employeeServlet = new Employee(userService, mapper); 
 		Florists floristsServlet = new Florists(userService, mapper);
 		Login loginServlet = new Login(userService,mapper);
+		Musicians musicianServlet = new Musicians(userService,mapper);
+		Photographers photographerServlet = new Photographers(userService, mapper);
 		VenueInformation venueInformationservlet = new VenueInformation(userService, mapper);
 		Venues venueServlet = new Venues(userService, mapper);
 		WeddingServlet weddingServlet = new WeddingServlet(userService, mapper);
@@ -79,6 +92,8 @@ public class ContextListener implements ServletContextListener{
 		context.addServlet("Wedding", weddingServlet).addMapping("/wedding");
 		context.addServlet("ChooseMeal", chooseMealServlet).addMapping("/wedding/choose-meal");
 		context.addServlet("Florists", floristsServlet).addMapping("/wedding/florists");
+		context.addServlet("Musicians", musicianServlet).addMapping("/wedding/musicians");
+		context.addServlet("Photographers", photographerServlet).addMapping("/wedding/photographers");
 		context.addServlet("WeddingBudget", weddingBudgetServlet).addMapping("/wedding/budget");
 		context.addServlet("Venues", venueServlet).addMapping("/wedding/venues");
 		
