@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
-@WebServlet(value = "/client-attendee-register")
+
 @SuppressWarnings("serial")
 public class ClientAttendeeRegister extends HttpServlet {
 	private final UserService userService;
