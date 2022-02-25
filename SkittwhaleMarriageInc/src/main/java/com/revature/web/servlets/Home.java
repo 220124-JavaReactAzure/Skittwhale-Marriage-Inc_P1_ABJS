@@ -15,7 +15,7 @@ import com.revature.services.UserService;
 public class Home extends HttpServlet {
 	private final UserService userService;
 	private final ObjectMapper mapper;
-	
+
 	public Home(UserService userService, ObjectMapper mapper) {
 		this.userService = userService;
 		this.mapper = mapper;
@@ -24,12 +24,22 @@ public class Home extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("<h1>MARRIAGE HOME!!!!!!!!!!</h1>"
-							 + "<div onClick='logout()'>Fake Logout</div>"
+							 + "<div onClick='logout()'>Go To Login</div>"
+							 + "<div onClick='redirectToEmployeeRegister()'>Register as Employee</div>"
+							 + "<div onClick='redirectToClientAttendeeRegister()'>Register as Client</div>"
 							 + "<script>"
 							 	+ "function logout() {"
 							 		+ "window.location = './login'"
 							 	+ "}"
-							 + "</script>");
+								 	+ "function redirectToEmployeeRegister() {"
+								 		+ "window.location = './employee-register';"
+								 	+ "}"
+								 	+ "function redirectToClientAttendeeRegister() {"
+								 		+ "window.location = './client-attendee-register';"
+								 	+ "}"
+								 	+ "function redirectToHome() {"
+								 		+ "window.location = './home';"
+								 	+ "}</script>");
 	}
-	
+
 }

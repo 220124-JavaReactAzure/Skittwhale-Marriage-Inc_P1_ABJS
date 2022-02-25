@@ -55,19 +55,20 @@ public class Login extends HttpServlet {
 		if(foundUser != null) {
 			switch(foundUser.getUsertypeid()) {
 			case(1):
-				resp.sendRedirect("/employee");
+				resp.sendRedirect("./employee");
 				break;
 			case(2):
-				resp.sendRedirect("/attendee");
+				resp.sendRedirect("./attendee");
 				break;
 			case(3):
-				resp.sendRedirect("/wedding");
+				resp.sendRedirect("./wedding");
 				break;
 			default:
-				resp.sendRedirect("/login");
+				resp.sendRedirect("./login");
 			}
 		} else {
-			resp.sendRedirect("/login");
+			System.out.println(foundUser);
+			resp.sendRedirect("./login");
 		}
 		/*System.out.println("Username: " + username + "\nPassword: " + password);
 		
