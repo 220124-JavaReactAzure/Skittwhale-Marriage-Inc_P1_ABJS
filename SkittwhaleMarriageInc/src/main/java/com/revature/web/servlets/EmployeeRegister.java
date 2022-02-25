@@ -28,8 +28,8 @@ public class EmployeeRegister extends HttpServlet {
 		resp.setContentType("text/html");
 		resp.getWriter().write("<h1>MARRIAGE EMPLOYEE REGISTER!!!</h1>"
 							 + "<form method='post' action='employee-register'>"
-							 	+ "<label for='username'>Username: </label>"
-							 	+ "<input type='text' id='username' name='username'></input><br/>"
+							 	+ "<label for='email'>Email: </label>"
+							 	+ "<input type='text' id='email' name='email'></input><br/>"
 							 	+ "<label for='password'>Password: </label>"
 							 	+ "<input type='password' id='password' name='password'></input><br/>"
 							 	+ "<label for='email'>Email: </label>"
@@ -50,12 +50,12 @@ public class EmployeeRegister extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		UUID userId = UUID.randomUUID();
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
 		String email = req.getParameter("email");
+		String firstname = req.getParameter("firstname");
+		String lastname = req.getParameter("lastname");
+		String password = req.getParameter("password");
 		
-		User newUser = new User(userId, username, password, email, false, 1, 1, 1, null);
+		User newUser = new User(email, firstname, lastname, password, false, 1, 1, 1, null);
 		if(userService.addUser(newUser)) {
 			resp.sendRedirect("/employee");
 		} else {

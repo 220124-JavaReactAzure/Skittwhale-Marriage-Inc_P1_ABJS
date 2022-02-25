@@ -27,8 +27,12 @@ public class ClientAttendeeRegister extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("<h1>MARRIAGE EMPLOYEE REGISTER!!!</h1>"
 				 + "<form method='post' action='client-attendee-register'>"
-				 	+ "<label for='username'>Username: </label>"
-				 	+ "<input type='text' id='username' name='username'></input><br/>"
+				 	+ "<label for='email'>Email: </label>"
+				 	+ "<input type='text' id='email' name='email'></input><br/>"
+				 	+ "<label for='firstname'>First Name: </label>"
+				 	+ "<input type='text' id='firstname' name='firstname'></input><br/>"
+				 	+ "<label for='lastname'>Last Name: </label>"
+				 	+ "<input type='text' id='lastname' name='lastname'></input><br/>"
 				 	+ "<label for='password'>Password: </label>"
 				 	+ "<input type='password' id='password' name='password'></input><br/>"
 				 	+ "<input type='checkbox' id='betrothed' name='betrothed'>Are you getting married? </input>"
@@ -48,7 +52,9 @@ public class ClientAttendeeRegister extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = req.getParameter("username");
+		String email = req.getParameter("email");
+		String firstname = req.getParameter("firstname");
+		String lastname = req.getParameter("lastname");
 		String password = req.getParameter("password");
 		
 		boolean isBetrothed = false;
@@ -56,24 +62,13 @@ public class ClientAttendeeRegister extends HttpServlet {
 			isBetrothed = true;
 		}
 		if(isBetrothed) {
-			UUID userId = UUID.randomUUID();
-			String email = req.getParameter("email");
-			User newUser = new User(userId, username, password, email, false, 1, 1, 3, null);
+			User newUser = new User(email, firstname, lastname, password, false, 1, 1, 3, null);
 			userService.addUser(newUser);
 		}
 		else {
-			UUID userId = UUID.randomUUID();
-			String email = req.getParameter("email");
-			User newUser = new User(userId, username, password, email, false, 1, 1, 2, null);
+			User newUser = new User(email, firstname, lastname, password, false, 1, 1, 2, null);
 			userService.addUser(newUser);
 		}
-		
-		
-		
-		
-		
-		
-		
 		
 //		System.out.println("Username: " + username + "\nPassword: " + password + "\nBetrothed: " + isBetrothed);
 //		

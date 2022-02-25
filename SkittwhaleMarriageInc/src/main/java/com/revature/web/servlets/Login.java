@@ -1,10 +1,8 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +25,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("<h1>MARRIAGE!</h1>"
 							 + "<form method='post' action='login'>"
-							 	+ "<label for='username'>Username: </label>"
-							 	+ "<input type='text' id='username' name='username'></input><br/>"
+							 	+ "<label for='email'>Email: </label>"
+							 	+ "<input type='text' id='email' name='email'></input><br/>"
 							 	+ "<label for='password'>Password: </label>"
 							 	+ "<input type='password' id='password' name='password'></input><br/>"
 							 	+ "<input type='submit' value='Login'></input>"
@@ -51,11 +49,26 @@ public class Login extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
+		String email = req.getParameter("email");
+		User foundUser = userService.findByEmail(email);
 		
-		User newUser = new User(username, password);
-		userService.findByUsername(newUser);
+		if(foundUser != null) {
+			switch(foundUser.getUsertypeid()) {
+			case(1):
+				resp.sendRedirect("/employee");
+				break;
+			case(2):
+				resp.sendRedirect("/attendee");
+				break;
+			case(3):
+				resp.sendRedirect("/wedding");
+				break;
+			default:
+				resp.sendRedirect("/login");
+			}
+		} else {
+			resp.sendRedirect("/login");
+		}
 		/*System.out.println("Username: " + username + "\nPassword: " + password);
 		
 		PrintWriter writer = resp.getWriter();

@@ -18,20 +18,17 @@ import org.hibernate.annotations.Type;
 public class User {
 
 	@Id
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Column(name="userid", updatable = false, nullable = false, columnDefinition = "VARCHAR")
-	@Type(type = "uuid-char")
-	private UUID id;
+	@Column(name="email", unique = true, nullable = false)
+	private String email;
 
-	@Column(name="username")
-	private String username;
+	@Column(name="firstname")
+	private String firstname;
+	
+	@Column(name="lastname")
+	private String lastname;
 
 	@Column(name="userpassword")
 	private String password;
-
-	@Column(name="email", unique = true, nullable = false)
-	private String email;
 
 	@Column(name="plusone")
 	private boolean plusone;
@@ -53,59 +50,22 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(UUID id, String username, String userpassword, String email, boolean plusone, int mealid,
-			int plusonemealid, int usertypeid, String weddingid) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = userpassword;
-		this.email = email;
-		this.plusone = plusone;
-		this.mealid = mealid;
-		this.plusonemealid = plusonemealid;
-		this.usertypeid = usertypeid;
-		this.weddingid = weddingid;
-	}
-
-	public User(String username, String password, String email, boolean plusone, int mealid, int plusonemealid,
+	public User(String email, String firstname, String lastname, String password, boolean plusone, int mealid, int plusonemealid,
 			int usertypeid, String weddingid) {
 		super();
-		this.username = username;
-		this.password = password;
 		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.password = password;
 		this.plusone = plusone;
 		this.mealid = mealid;
 		this.plusonemealid = plusonemealid;
 		this.usertypeid = usertypeid;
 		this.weddingid = weddingid;
 	}
-	public User(String username, String password)
+	public User(String email, String password)
 	{
-		this.username = username;
-		this.password = password;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
+		this.email = email;
 		this.password = password;
 	}
 
@@ -115,6 +75,30 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public boolean isPlusone() {
@@ -159,14 +143,15 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", userpassword=" + password + ", email=" + email + ", plusone="
-				+ plusone + ", mealid=" + mealid + ", plusonemealid=" + plusonemealid + ", usertypeid=" + usertypeid
-				+ ", weddingid=" + weddingid + "]";
+		return "User [email=" + email + ", firstname=" + firstname + ", lastname=" + lastname + ", password=" + password
+				+ ", plusone=" + plusone + ", mealid=" + mealid + ", plusonemealid=" + plusonemealid + ", usertypeid="
+				+ usertypeid + ", weddingid=" + weddingid + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, id, mealid, password, plusone, plusonemealid, username, usertypeid, weddingid);
+		return Objects.hash(email, firstname, lastname, mealid, password, plusone, plusonemealid, usertypeid,
+				weddingid);
 	}
 
 	@Override
@@ -178,11 +163,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && mealid == other.mealid
+		return Objects.equals(email, other.email) && Objects.equals(firstname, other.firstname)
+				&& Objects.equals(lastname, other.lastname) && mealid == other.mealid
 				&& Objects.equals(password, other.password) && plusone == other.plusone
-				&& plusonemealid == other.plusonemealid && Objects.equals(username, other.username)
-				&& usertypeid == other.usertypeid && Objects.equals(weddingid, other.weddingid);
+				&& plusonemealid == other.plusonemealid && usertypeid == other.usertypeid
+				&& Objects.equals(weddingid, other.weddingid);
 	}
-	
 
 }
