@@ -27,7 +27,7 @@ public class ServicesService {
 		return servDAO.findByServicesId(id);
 	}
 	
-	public String getServicesByName(String name) {
+	public Services getServicesByName(String name) {
 		return servDAO.findByServicesName(name);
 	}
 	
