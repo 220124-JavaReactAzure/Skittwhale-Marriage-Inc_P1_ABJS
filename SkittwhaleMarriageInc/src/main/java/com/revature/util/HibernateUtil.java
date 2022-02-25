@@ -11,7 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.revature.models.Services;
 import com.revature.models.User;
-import com.revature.models.Wedding;
+import com.revature.models.Weddings;
 
 public class HibernateUtil {
 
@@ -29,7 +29,7 @@ public class HibernateUtil {
 			configuration.setProperties(props);
 			configuration.addAnnotatedClass(User.class);
 			configuration.addAnnotatedClass(Services.class);
-			configuration.addAnnotatedClass(Wedding.class);
+			configuration.addAnnotatedClass(Weddings.class);
 			
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			
