@@ -1,11 +1,8 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,18 +53,26 @@ public class ClientAttendeeRegister extends HttpServlet {
 		String firstname = req.getParameter("firstname");
 		String lastname = req.getParameter("lastname");
 		String password = req.getParameter("password");
-		
 		boolean isBetrothed = false;
+		
 		if(req.getParameter("betrothed") != null) {
 			isBetrothed = true;
 		}
-		if(isBetrothed) {
-			User newUser = new User(email, firstname, lastname, password, false, 1, 1, 3, null);
-			userService.addUser(newUser);
-		}
-		else {
-			User newUser = new User(email, firstname, lastname, password, false, 1, 1, 2, null);
-			userService.addUser(newUser);
+		
+		User existingUser = userService.findByEmail(email);
+		
+		if(email != existingUser.getEmail()) {
+			if(isBetrothed) {
+				User newUser = new User(email, firstname, lastname, password, false, 1, 1, 3, null);
+				userService.addUser(newUser);
+				resp.sendRedirect("./wedding");
+			} else {
+				User newUser = new User(email, firstname, lastname, password, false, 1, 1, 2, null);
+				userService.addUser(newUser);
+				resp.sendRedirect("./attendee");
+			}			
+		} else {
+			resp.sendRedirect("./client-attendee-register");
 		}
 		
 //		System.out.println("Username: " + username + "\nPassword: " + password + "\nBetrothed: " + isBetrothed);

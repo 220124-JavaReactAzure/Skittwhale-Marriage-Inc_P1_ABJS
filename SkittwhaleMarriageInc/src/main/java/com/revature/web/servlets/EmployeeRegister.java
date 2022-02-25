@@ -1,7 +1,6 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +29,12 @@ public class EmployeeRegister extends HttpServlet {
 							 + "<form method='post' action='employee-register'>"
 							 	+ "<label for='email'>Email: </label>"
 							 	+ "<input type='text' id='email' name='email'></input><br/>"
+							 	+ "<label for='firstname'>First Name: </label>"
+							 	+ "<input type='text' id='firstname' name='firstname'></input><br/>"
+							 	+ "<label for='lastname'>Last Name: </label>"
+							 	+ "<input type='text' id='lastname' name='lastname'></input><br/>"
 							 	+ "<label for='password'>Password: </label>"
 							 	+ "<input type='password' id='password' name='password'></input><br/>"
-							 	+ "<label for='email'>Email: </label>"
-							 	+ "<input type='text' id='email' name='email'></input><br/>"
 							 	+ "<input type='submit' value='Register as Employee'></input>"
 							 + "</form>"
 							 + "<div onClick='redirectToHome()'>Fake Register(for testing)</div>"
@@ -55,12 +56,19 @@ public class EmployeeRegister extends HttpServlet {
 		String lastname = req.getParameter("lastname");
 		String password = req.getParameter("password");
 		
-		User newUser = new User(email, firstname, lastname, password, false, 1, 1, 1, null);
-		if(userService.addUser(newUser)) {
-			resp.sendRedirect("/employee");
+		User existingUser = userService.findByEmail(email);
+		
+		if(email != existingUser.getEmail()) {
+			User newUser = new User(email, firstname, lastname, password, false, 1, 1, 1, null);
+			if(userService.addUser(newUser)) {
+				resp.sendRedirect("./employee");
+			} else {
+				resp.sendRedirect("./employee-register");
+			}			
 		} else {
-			
+			resp.sendRedirect("./employee-register");
 		}
+		
 		
 //		System.out.println("Username: " + username + "\nPassword: " + password);
 //		
