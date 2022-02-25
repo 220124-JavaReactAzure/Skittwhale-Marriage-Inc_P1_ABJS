@@ -45,20 +45,23 @@ public class UserDAO {
 
 	}
 
-	public User findByUsername(User user) {
+	public boolean findByEmail(User user) {
 
 		try {
 			Session session = HibernateUtil.getSession();
-			user = session.get(User.class, user.getUsername());
-			if (user.getUsername() == null) {
-				return null;
+
+			user = session.get(User.class, user.getEmail());
+			if (user.getEmail() == null) {
+				return false;
 			} else {
-				return user;
+				return true;
 			}
 
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
-			return null;
+			return false;
+		}finally {
+			HibernateUtil.closeSession();
 		}
 
 	}
