@@ -62,6 +62,21 @@ public class ServicesDAO {
 		}
 
 	}
+	
+	public String findByServicesName(String serviceName) {
+		try {
+			Session session = HibernateUtil.getSession();
+			Services serv = session.get(Services.class, serviceName);
+			return serv.getServiceName();
+
+		} catch (HibernateException | IOException e) {
+			e.printStackTrace();
+			return "";
+		}finally {
+			HibernateUtil.closeSession();
+		}
+
+	}
 
 	public void updateServiceWithSessionMethod(Services serv) {
 		try {

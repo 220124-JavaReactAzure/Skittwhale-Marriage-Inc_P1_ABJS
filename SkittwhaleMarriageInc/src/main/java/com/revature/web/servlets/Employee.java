@@ -19,6 +19,7 @@ public class Employee extends HttpServlet {
 	private final UserService userService;
 	private final ServicesService servService;
 	private final ObjectMapper mapper;
+	private static String message = "";
 
 	public Employee(UserService userService, ServicesService servService, ObjectMapper mapper) {
 		this.userService = userService;
@@ -29,47 +30,34 @@ public class Employee extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.getWriter().write("<h1>Hello Employee!</h1>"
-							 + "<h2>Use the forms below to add new services for our company.</h2>"
-							 + "<form method='post' action='employee'>" 
-							 	+ "<label>Venue Name: </label>"
-							 	+ "<input type='text' id='venuename' name='venuename'></input><br/>" 
-							 	+ "<label>Venue Cost: </label>"
-							 	+ "<input type='number' id='venuecost' name='venuecost'></input><br/>"
-							 	+ "<input type='hidden' name='servicetype' value='1'></input>"
-							 	+ "<input type='submit' value='Add New Venue'></input>" 
-							 + "</form>"
-							 + "<form method='post' action='employee'>" 
-							 	+ "<label>Florist Name: </label>"
-							 	+ "<input type='text' id='floristname' name='floristname'></input><br/>" 
-							 	+ "<label>Venue Cost: </label>"
-							 	+ "<input type='number' id='floristcost' name='floristcost'></input><br/>"
-							 	+ "<input type='hidden' name='servicetype' value='2'></input>"
-							 	+ "<input type='submit' value='Add New Florist'></input>" 
-							 + "</form>"
-							 + "<form method='post' action='employee'>" 
-							 	+ "<label>Musician Name: </label>"
-							 	+ "<input type='text' id='musicianname' name='musicianname'></input><br/>"
-							 	+ "<label>Venue Cost: </label>"
-							 	+ "<input type='number' id='musiciancost' name='musiciancost'></input><br/>"
-							 	+ "<input type='hidden' name='servicetype' value='3'></input>"
-							 	+ "<input type='submit' value='Add New Musician'></input>" 
-							 + "</form>"
-							 + "<form method='post' action='employee'>" 
-							 	+ "<label>Caterer Name: </label>"
-							 	+ "<input type='text' id='caterername' name='caterername'></input><br/>" 
-							 	+ "<label>Venue Cost: </label>"
-							 	+ "<input type='number' id='caterercost' name='caterercost'></input><br/>"
-							 	+ "<input type='hidden' name='servicetype' value='4'></input>"
-							 	+ "<input type='submit' value='Add New Caterer'></input>" 
-							 + "</form>"
-							 + "<form method='post' action='employee'>" 
-							 	+ "<label>Photographer Name: </label>"
-							 	+ "<input type='text' id='photographername' name='photographername'></input><br/>"
-							 	+ "<label>Venue Cost: </label>"
-							 	+ "<input type='number' id='photographercost' name='photographercost'></input><br/>"
-							 	+ "<input type='hidden' name='servicetype' value='5'></input>"
-							 	+ "<input type='submit' value='Add New Photographer'></input>" 
-							 + "</form>");
+				+ "<h2>Use the forms below to add new services for our company.</h2>" + message
+				+ "<form method='post' action='employee'>" + "<label>Venue Name: </label>"
+				+ "<input type='text' id='venuename' name='venuename'></input><br/>" + "<label>Venue Cost: </label>"
+				+ "<input type='number' id='venuecost' name='venuecost'></input><br/>"
+				+ "<input type='hidden' name='servicetype' value='1'></input>"
+				+ "<input type='submit' value='Add New Venue'></input>" + "</form>"
+				+ "<form method='post' action='employee'>" + "<label>Florist Name: </label>"
+				+ "<input type='text' id='floristname' name='floristname'></input><br/>" + "<label>Venue Cost: </label>"
+				+ "<input type='number' id='floristcost' name='floristcost'></input><br/>"
+				+ "<input type='hidden' name='servicetype' value='2'></input>"
+				+ "<input type='submit' value='Add New Florist'></input>" + "</form>"
+				+ "<form method='post' action='employee'>" + "<label>Musician Name: </label>"
+				+ "<input type='text' id='musicianname' name='musicianname'></input><br/>"
+				+ "<label>Venue Cost: </label>"
+				+ "<input type='number' id='musiciancost' name='musiciancost'></input><br/>"
+				+ "<input type='hidden' name='servicetype' value='3'></input>"
+				+ "<input type='submit' value='Add New Musician'></input>" + "</form>"
+				+ "<form method='post' action='employee'>" + "<label>Caterer Name: </label>"
+				+ "<input type='text' id='caterername' name='caterername'></input><br/>" + "<label>Venue Cost: </label>"
+				+ "<input type='number' id='caterercost' name='caterercost'></input><br/>"
+				+ "<input type='hidden' name='servicetype' value='4'></input>"
+				+ "<input type='submit' value='Add New Caterer'></input>" + "</form>"
+				+ "<form method='post' action='employee'>" + "<label>Photographer Name: </label>"
+				+ "<input type='text' id='photographername' name='photographername'></input><br/>"
+				+ "<label>Venue Cost: </label>"
+				+ "<input type='number' id='photographercost' name='photographercost'></input><br/>"
+				+ "<input type='hidden' name='servicetype' value='5'></input>"
+				+ "<input type='submit' value='Add New Photographer'></input>" + "</form>");
 	}
 
 	@Override
@@ -82,37 +70,76 @@ public class Employee extends HttpServlet {
 		case (1):
 			serviceid = req.getParameter("venuename");
 			servicename = req.getParameter("venuename");
-			servicecost = Double.parseDouble(req.getParameter("venuecost"));
-			Services venueserv = new Services(serviceid, servicename, servicecost, servicetype);
-			servService.addService(venueserv);
+
+			if (servicename.equals(servService.getServicesByName(servicename))) {
+				message = "Servicename already exists";
+				resp.sendRedirect("./employee");
+			} else {
+				message = "";
+				servicecost = Double.parseDouble(req.getParameter("venuecost"));
+				Services venueserv = new Services(serviceid, servicename, servicecost, servicetype);
+				servService.addService(venueserv);
+			}
 			break;
-		case (2):
+
+		case (2): 
 			serviceid = req.getParameter("floristname");
 			servicename = req.getParameter("floristname");
-			servicecost = Double.parseDouble(req.getParameter("floristcost"));
-			Services floristserv = new Services(serviceid, servicename, servicecost, servicetype);
-			servService.addService(floristserv);
+			if (servicename.equals(servService.getServicesByName(servicename))) {
+				message = "Florist servicename already exists";
+				resp.sendRedirect("./employee");
+			} else {
+				message = "";
+
+				servicecost = Double.parseDouble(req.getParameter("floristcost"));
+				Services floristserv = new Services(serviceid, servicename, servicecost, servicetype);
+				servService.addService(floristserv);
+			}
+
 			break;
 		case (3):
 			serviceid = req.getParameter("musicianname");
 			servicename = req.getParameter("musicianname");
-			servicecost = Double.parseDouble(req.getParameter("musiciancost"));
-			Services musicianserv = new Services(serviceid, servicename, servicecost, servicetype);
-			servService.addService(musicianserv);
+			if (servicename.equals(servService.getServicesByName(servicename))) {
+				message = "Musician servicename already exists";
+				resp.sendRedirect("./employee");
+			} else {
+				message = "";
+
+				servicecost = Double.parseDouble(req.getParameter("musiciancost"));
+				Services musicianserv = new Services(serviceid, servicename, servicecost, servicetype);
+				servService.addService(musicianserv);
+			}
+
 			break;
 		case (4):
 			serviceid = req.getParameter("caterername");
 			servicename = req.getParameter("caterername");
-			servicecost = Double.parseDouble(req.getParameter("caterercost"));
-			Services catererserv = new Services(serviceid, servicename, servicecost, servicetype);
-			servService.addService(catererserv);
+			if (servicename.equals(servService.getServicesByName(servicename))) {
+				message = "Caterer servicename already exists";
+				resp.sendRedirect("./employee");
+			} else {
+
+				servicecost = Double.parseDouble(req.getParameter("caterercost"));
+				Services catererserv = new Services(serviceid, servicename, servicecost, servicetype);
+				servService.addService(catererserv);
+			}
+
 			break;
 		case (5):
-			serviceid = req.getParameter("caterername");
-			servicename = req.getParameter("caterername");
-			servicecost = Double.parseDouble(req.getParameter("caterercost"));
-			Services photographerserv = new Services(serviceid, servicename, servicecost, servicetype);
-			servService.addService(photographerserv);
+			serviceid = req.getParameter("photographername");
+			servicename = req.getParameter("photographername");
+			if (servicename.equals(servService.getServicesByName(servicename))) {
+				message = "Photographer servicename already exists";
+				resp.sendRedirect("./employee");
+			} else {
+				message = "";
+
+				servicecost = Double.parseDouble(req.getParameter("photographercost"));
+				Services photographerserv = new Services(serviceid, servicename, servicecost, servicetype);
+				servService.addService(photographerserv);
+			}
+
 			break;
 		default:
 			break;
