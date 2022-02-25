@@ -81,7 +81,7 @@ public class WeddingDAO {
 
 	}
 
-	public void updateUserWithHQL(Wedding wedding) {
+	public void updateWeddingWithHQL(Wedding wedding) {
 		// TODO Auto-generated method stub
 
 	}

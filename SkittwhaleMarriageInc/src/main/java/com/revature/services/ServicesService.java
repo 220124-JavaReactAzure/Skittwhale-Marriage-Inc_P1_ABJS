@@ -2,34 +2,36 @@ package com.revature.services;
 
 import java.util.List;
 
-import com.revature.dao.UserDAO;
-import com.revature.models.User;
+import com.revature.dao.ServicesDAO;
+import com.revature.models.Services;
+
+
 
 public class ServicesService {
-	private final UserDAO userDAO;
+	private final ServicesDAO servDAO;
 	
-	public ServicesService(UserDAO userDAO) {
-		this.userDAO= userDAO;
+	public ServicesService(ServicesDAO servDAO) {
+		this.servDAO= servDAO;
 	}
 	
-	public boolean addUser(User user) {
-		return userDAO.addUser(user);
+	public boolean addUser(Services serv) {
+		return servDAO.addService(serv);
 	}
 	
-	public List<User> getAllUsers(){
-		return userDAO.getAllUsers();
+	public List<Services> getAllUsers(){
+		return servDAO.getAllServices();
 	}
 	
 	//will probably be string since uuid
-	public User getUserById(int id) {
-		return userDAO.getUserByID;
+	public Services getServicesById(String id) {
+		return servDAO.findByServicesId(id);
 	}
 	
-	public void updateUserWithSessionMethod(User user) {
-		userDAO.updateUserWithSessionMethod(user);
+	public void updateServicesWithSessionMethod(Services serv) {
+		servDAO.updateServiceWithSessionMethod(serv);
 	}
 	
-	public void updateUserWithHQL(User user) {
-		userDAO.updateUserWithHQL(user);
+	public void updateUserWithHQL(Services serv) {
+		servDAO.updateServiceWithHQL(serv);
 	}
 }
