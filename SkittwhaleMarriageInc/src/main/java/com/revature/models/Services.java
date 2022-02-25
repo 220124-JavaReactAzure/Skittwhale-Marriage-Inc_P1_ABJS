@@ -31,6 +31,14 @@ public class Services {
 		this.serviceCost = serviceCost;
 		this.serviceTypeId = serviceTypeId;
 	}
+	
+
+	public Services(String serviceId, String serviceName) {
+		super();
+		this.serviceId = serviceId;
+		this.serviceName = serviceName;
+	}
+
 
 	public Services(String serviceId) {
 		super();
