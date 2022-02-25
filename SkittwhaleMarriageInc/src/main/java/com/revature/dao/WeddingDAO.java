@@ -10,12 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.models.User;
-import com.revature.models.Wedding;
+import com.revature.models.Weddings;
 import com.revature.util.HibernateUtil;
 
 public class WeddingDAO {
 
-	public boolean addWedding(Wedding wedding) {
+	public boolean addWedding(Weddings wedding) {
 		try {
 			Session session = HibernateUtil.getSession();
 			session.save(wedding);
@@ -30,10 +30,11 @@ public class WeddingDAO {
 
 	}
 
-	public List<Wedding> getAllWeddings() {
+	@SuppressWarnings("unchecked")
+	public List<Weddings> getAllWeddings() {
 		try {
 			Session session = HibernateUtil.getSession();
-			List<Wedding> wedding = session.createQuery("FROM weddingid").list();
+			List<Weddings> wedding = session.createQuery("FROM Weddings").list();
 			return wedding;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,11 +45,11 @@ public class WeddingDAO {
 
 	}
 
-	public Wedding findByWeddingId(String weddingId) {
+	public Weddings findByWeddingId(String weddingId) {
 
 		try {
 			Session session = HibernateUtil.getSession();
-			Wedding wedding = session.get(Wedding.class, weddingId);
+			Weddings wedding = session.get(Weddings.class, weddingId);
 			if (wedding == null) {
 				return null;
 			} else {
@@ -64,7 +65,7 @@ public class WeddingDAO {
 
 	}
 
-	public void updateWeddingWithSessionMethod(Wedding wedding) {
+	public void updateWeddingWithSessionMethod(Weddings wedding) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
@@ -81,7 +82,7 @@ public class WeddingDAO {
 
 	}
 
-	public void updateWeddingWithHQL(Wedding wedding) {
+	public void updateWeddingWithHQL(Weddings wedding) {
 		// TODO Auto-generated method stub
 
 	}

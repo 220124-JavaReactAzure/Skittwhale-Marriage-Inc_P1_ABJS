@@ -14,7 +14,7 @@ public class ServicesService {
 		this.servDAO= servDAO;
 	}
 	
-	public boolean addUser(Services serv) {
+	public boolean addService(Services serv) {
 		return servDAO.addService(serv);
 	}
 	

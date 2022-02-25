@@ -1,6 +1,7 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Services;
-import com.revature.models.Wedding;
+import com.revature.models.Weddings;
 import com.revature.services.ServicesService;
 import com.revature.services.UserService;
 import com.revature.services.WeddingService;
@@ -24,7 +25,7 @@ public class WeddingServlet extends HttpServlet {
 	private final ServicesService servService;
 	private final WeddingService weddService;
 
-	private List<Services> servOptions = new LinkedList<>();
+	private List<Services> servOptions = new ArrayList<>();
 
 	public WeddingServlet(UserService userService, ServicesService servService, WeddingService weddService,
 			ObjectMapper mapper) {
@@ -36,15 +37,25 @@ public class WeddingServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Services serv = new Service(servname, servname);
 		servOptions = servService.getAllServices();
 		String venues = "";
-//		for (int i = 0; i < servOptions.size(); i++) {
-//			venues += "<input type = \"radio\" id=\"" + servOptions.get(i).getServiceId()
-//					+ "\" name =\"venue\" \"value = \"" + servOptions.get(i).getServiceId() + "\" >"
-//					+ "+ <label for = \"" + servOptions.get(i).getServiceId() + "\">Venue:\""
-//					+ servOptions.get(i).getServiceId() + "\"</label>";
-//		}
+		String caterers = "";
+		String florists = "";
+		String musicians = "";
+		String photographers = "";
+		for (int i = 0; i < servOptions.size(); i++) {
+			if(servOptions.get(i).getServiceTypeId() == 1) {
+				venues += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";				
+			} else if(servOptions.get(i).getServiceTypeId() == 2) {
+				florists += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";
+			} else if(servOptions.get(i).getServiceTypeId() == 3) {
+				caterers += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";
+			} else if(servOptions.get(i).getServiceTypeId() == 4) {
+				musicians += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";
+			} else if(servOptions.get(i).getServiceTypeId() == 5) {
+				photographers += "<option value='" + servOptions.get(i).getServiceId() +"'>" + servOptions.get(i).getServiceId() + "</option>\n";
+			}
+		}
 		resp.getWriter().write("<h1>Plan your Marriage</h1>" + "<form method='post' action='wedding'>"
 				+ "<label for='weddingname'>Wedding Name: </label>"
 				+ "<input type='text' id='weddingname' name='weddingname'></input><br/>"
@@ -52,29 +63,20 @@ public class WeddingServlet extends HttpServlet {
 				+ "<input type='text' id='weddingdate' name='weddingdate'></input><br/>"
 				+ "<label for='budget'>Set your Budget: </label>"
 				+ "<input type='text' id='budget' name='budget'></input><br/>"
-				+ "<label for='venues'>Select your Venue: </label>" + "<select id='venues' name='venues'>" //+ servOptions
-				// Add Venues
-
+				+ "<label for='venues'>Select your Venue: </label>" + "<select id='venues' name='venues'>"
+				+ venues
 				+ "</select><br/>" + "<label for='caterers'>Select your Caterer: </label>"
 				+ "<select id='caterers' name='caterers'>"
-
-				// Add Caterers
-
+				+ caterers
 				+ "</select><br/>" + "<label for='florists'>Select your Florist: </label>"
 				+ "<select id='florists' name='florists'>"
-
-				// Add Florists
-
+				+ florists
 				+ "</select><br/>" + "<label for='musicians'>Select your Musician: </label>"
 				+ "<select id='musicians' name='musicians'>"
-
-				// Add Musicians
-
+				+ musicians
 				+ "</select><br/>" + "<label for='photographers'>Select your Photographer: </label>"
 				+ "<select id='photographers' name='photographers'>"
-
-				// Add Photographers
-
+				+ photographers
 				+ "</select><br/>" + "<input type='submit' value='Create your Wedding'></input>" + "</form>");
 	}
 

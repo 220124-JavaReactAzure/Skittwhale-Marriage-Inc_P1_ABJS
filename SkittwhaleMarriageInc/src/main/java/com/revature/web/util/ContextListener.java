@@ -54,13 +54,13 @@ public class ContextListener implements ServletContextListener{
 		
 		//servlets
 		Home homeServlet = new Home(userService, mapper);
-		Attendee attendeeServlet = new Attendee(userService, mapper);
+		Attendee attendeeServlet = new Attendee(userService, weddService, mapper);
 		ChooseMeal chooseMealServlet = new ChooseMeal(userService, servService, weddService, mapper);
 		ClientAttendeeRegister clientAttendeeRegisterServlet = new ClientAttendeeRegister(userService, mapper);
 		ConfirmationCancellation confirmationCancellationServlet = new ConfirmationCancellation(userService, servService, weddService, mapper);
 		ContactInformation contactInformationServlet = new ContactInformation(userService, servService, weddService, mapper);
 		EmployeeRegister employeeRegisterServlet = new EmployeeRegister(userService, mapper);
-		Employee employeeServlet = new Employee(userService, mapper); 
+		Employee employeeServlet = new Employee(userService, servService, mapper); 
 		Florists floristsServlet = new Florists(userService, servService, weddService, mapper);
 		Login loginServlet = new Login(userService,mapper);
 		Musicians musicianServlet = new Musicians(userService, servService, weddService, mapper);
