@@ -22,7 +22,24 @@ public class Attendee extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE ATTENDEE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>");
+		resp.getWriter().write("<h1>Attendee Information</h1>"
+							 + "<form method='post' action='attendee'>"
+							 	+ "<label for='weddings'>Select the wedding you would like to attend: </label>"
+							 	+ "<select id='weddings' name='weddings'>"
+							 
+							 		// Add existing weddings from our database here; STRETCH GOAL: Exclude the default wedding
+							 	
+							 	+ "</select><br/>"
+							 	+ "<label for='mealtypes'>Select your meal Type: </label>"
+							 	+ "<select id='mealtypes' name='mealtypes'>"
+							 		+ "<option value='meat'></option>"
+							 		+ "<option value='fish'></option>"
+							 		+ "<option value='veggie'></option>"
+							 	+ "</select><br/>"
+							 	+ "<label for='email'>Email: </label>"
+							 	+ "<input type='text' id='email' name='email'></input>"
+							 	+ "<input type='submit' value='Attend the Wedding'></input>"
+							 + "</form>");
 	}
 	
 }

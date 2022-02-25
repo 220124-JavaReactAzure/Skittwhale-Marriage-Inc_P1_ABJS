@@ -15,7 +15,7 @@ public class Services {
 	@Column(name = "serviceid", unique = true, nullable = false)
 	private String serviceId;
 
-	@Column(name = "servicename")
+	@Column(name = "servicename", unique = true)
 	private String serviceName;
 
 	@Column(name = "servicecost")

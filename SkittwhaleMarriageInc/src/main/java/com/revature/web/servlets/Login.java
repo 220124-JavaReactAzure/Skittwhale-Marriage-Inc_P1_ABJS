@@ -23,7 +23,7 @@ public class Login extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>MARRIAGE!</h1>"
+		resp.getWriter().write("<h1>Skittwhale Marriage Inc Login</h1>"
 							 + "<form method='post' action='login'>"
 							 	+ "<label for='email'>Email: </label>"
 							 	+ "<input type='text' id='email' name='email'></input><br/>"
