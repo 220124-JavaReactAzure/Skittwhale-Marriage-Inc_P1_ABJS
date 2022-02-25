@@ -2,34 +2,36 @@ package com.revature.services;
 
 import java.util.List;
 
-import com.revature.dao.UserDAO;
-import com.revature.models.User;
+import com.revature.dao.WeddingDAO;
+import com.revature.models.Wedding;
+
+
 
 public class WeddingService {
-	private final UserDAO userDAO;
+	private final WeddingDAO weddingDAO;
 	
-	public WeddingService(UserDAO userDAO) {
-		this.userDAO= userDAO;
+	public WeddingService(WeddingDAO weddingDAO) {
+		this.weddingDAO= weddingDAO;
 	}
 	
-	public boolean addUser(User user) {
-		return userDAO.addUser(user);
+	public boolean addWedding(Wedding wedding) {
+		return weddingDAO.addWedding(wedding);
 	}
 	
-	public List<User> getAllUsers(){
-		return userDAO.getAllUsers();
+	public List<Wedding> getAllUsers(){
+		return weddingDAO.getAllWeddings();
 	}
 	
 	//will probably be string since uuid
-	public User getUserById(int id) {
-		return userDAO.getUserByID;
+	public Wedding getUserById(String id) {
+		return weddingDAO.findByWeddingId(id);
 	}
 	
-	public void updateUserWithSessionMethod(User user) {
-		userDAO.updateUserWithSessionMethod(user);
+	public void updateWeddingWithSessionMethod(Wedding wedding) {
+		weddingDAO.updateWeddingWithSessionMethod(wedding);
 	}
 	
-	public void updateUserWithHQL(User user) {
-		userDAO.updateUserWithHQL(user);
+	public void updateWeddingWithHQL(Wedding wedding) {
+		weddingDAO.updateWeddingWithHQL(wedding);
 	}
 }
