@@ -20,12 +20,12 @@ public class UserService {
 		return userDAO.getAllUsers();
 	}
 	
-	//will probably be string since uuid
 	public User getUserById(int id) {
 		return userDAO.getUserByID;
 	}
-	public boolean findByUsername(User user) {
-		return userDAO.findByEmail(user);
+	
+	public User findByEmail(String email) {
+		return userDAO.findByEmail(email);
 	}
 	
 	public void updateUserWithSessionMethod(User user) {
