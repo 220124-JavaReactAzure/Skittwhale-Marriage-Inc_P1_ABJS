@@ -1,6 +1,8 @@
 package com.revature.web.servlets;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.Wedding;
 import com.revature.services.ServicesService;
 import com.revature.services.UserService;
 import com.revature.services.WeddingService;
@@ -20,6 +23,8 @@ public class WeddingServlet extends HttpServlet {
 	private final ServicesService servService;
 	private final WeddingService weddService;
 	
+	private List<Wedding> weddingOptions = new LinkedList<>();
+	
 	public WeddingServlet(UserService userService, ServicesService servService, WeddingService weddService, ObjectMapper mapper) {
 		this.userService = userService;
 		this.mapper = mapper;
@@ -29,6 +34,9 @@ public class WeddingServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		weddingOptions = weddService.getAllWeddings();
+		String venues = "";
 		resp.getWriter().write("<h1>Plan your Marriage</h1>"
 							 + "<form method='post' action='wedding'>"
 							 	+ "<label for='weddingname'>Wedding Name: </label>"
@@ -39,7 +47,13 @@ public class WeddingServlet extends HttpServlet {
 							 	+ "<input type='text' id='budget' name='budget'></input><br/>"
 							 	+ "<label for='venues'>Select your Venue: </label>"
 							 	+ "<select id='venues' name='venues'>"
-							 	
+							 	+ "</form>");
+		for (int i = 0; i < weddingOptions.size(); i++) {
+			venues += "<input type = \"radio\" id=\""+weddingOptions.get(i).getVenueId()+"\" name =\"venue\" \"value = \""+weddingOptions.get(i).getVenueId()+"\" >"
+					+ "+ <label for = \""+weddingOptions.get(i).getVenueId()+"\">Venue:\""+weddingOptions.get(i).getVenueId()+"\"</label>";
+			
+	 	}
+		resp.getWriter().write(" "
 							 		// Add Venues
 							 		
 							 	+ "</select><br/>"

@@ -18,7 +18,7 @@ public class WeddingService {
 		return weddingDAO.addWedding(wedding);
 	}
 	
-	public List<Wedding> getAllUsers(){
+	public List<Wedding> getAllWeddings(){
 		return weddingDAO.getAllWeddings();
 	}
 	
