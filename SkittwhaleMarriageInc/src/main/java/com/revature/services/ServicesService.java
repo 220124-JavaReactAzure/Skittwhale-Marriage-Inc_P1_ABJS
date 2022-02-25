@@ -18,7 +18,7 @@ public class ServicesService {
 		return servDAO.addService(serv);
 	}
 	
-	public List<Services> getAllUsers(){
+	public List<Services> getAllServices(){
 		return servDAO.getAllServices();
 	}
 	
