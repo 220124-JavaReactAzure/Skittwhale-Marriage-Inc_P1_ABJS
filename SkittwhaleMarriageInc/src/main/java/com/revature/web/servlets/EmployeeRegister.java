@@ -56,7 +56,11 @@ public class EmployeeRegister extends HttpServlet {
 		String email = req.getParameter("email");
 		
 		User newUser = new User(userId, username, password, email, false, 1, 1, 1, null);
-		userService.addUser(newUser);
+		if(userService.addUser(newUser)) {
+			resp.sendRedirect("/employee");
+		} else {
+			
+		}
 		
 //		System.out.println("Username: " + username + "\nPassword: " + password);
 //		

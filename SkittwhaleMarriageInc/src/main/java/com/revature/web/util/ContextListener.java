@@ -79,7 +79,7 @@ public class ContextListener implements ServletContextListener{
 		context.addServlet("Wedding", weddingServlet).addMapping("/wedding");
 		context.addServlet("ChooseMeal", chooseMealServlet).addMapping("/wedding/choose-meal");
 		context.addServlet("Florists", floristsServlet).addMapping("/wedding/florists");
-		context.addServlet("WeddingBudget", weddingBudgetServlet).addMapping("/wedding/venue");
+		context.addServlet("WeddingBudget", weddingBudgetServlet).addMapping("/wedding/budget");
 		context.addServlet("Venues", venueServlet).addMapping("/wedding/venues");
 		
 		//staff member
