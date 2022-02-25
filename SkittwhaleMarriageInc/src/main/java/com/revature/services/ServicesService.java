@@ -27,6 +27,10 @@ public class ServicesService {
 		return servDAO.findByServicesId(id);
 	}
 	
+	public String getServicesByName(String name) {
+		return servDAO.findByServicesName(name);
+	}
+	
 	public void updateServicesWithSessionMethod(Services serv) {
 		servDAO.updateServiceWithSessionMethod(serv);
 	}
