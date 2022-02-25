@@ -3,7 +3,7 @@ package com.revature.services;
 import java.util.List;
 
 import com.revature.dao.WeddingDAO;
-import com.revature.models.Wedding;
+import com.revature.models.Weddings;
 
 
 
@@ -14,24 +14,24 @@ public class WeddingService {
 		this.weddingDAO= weddingDAO;
 	}
 	
-	public boolean addWedding(Wedding wedding) {
+	public boolean addWedding(Weddings wedding) {
 		return weddingDAO.addWedding(wedding);
 	}
 	
-	public List<Wedding> getAllWeddings(){
+	public List<Weddings> getAllWeddings(){
 		return weddingDAO.getAllWeddings();
 	}
 	
 	//will probably be string since uuid
-	public Wedding getUserById(String id) {
+	public Weddings getUserById(String id) {
 		return weddingDAO.findByWeddingId(id);
 	}
 	
-	public void updateWeddingWithSessionMethod(Wedding wedding) {
+	public void updateWeddingWithSessionMethod(Weddings wedding) {
 		weddingDAO.updateWeddingWithSessionMethod(wedding);
 	}
 	
-	public void updateWeddingWithHQL(Wedding wedding) {
+	public void updateWeddingWithHQL(Weddings wedding) {
 		weddingDAO.updateWeddingWithHQL(wedding);
 	}
 }

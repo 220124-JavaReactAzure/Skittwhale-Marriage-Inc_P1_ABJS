@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "weddings")
-public class Wedding {
+public class Weddings {
 
 	@Id
 	@Column(name = "weddingid")
@@ -39,12 +39,12 @@ public class Wedding {
 	@Column(name = "photographid")
 	private String photographId;
 
-	public Wedding() {
+	public Weddings() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Wedding(String weddingId, String weddingName, String weddingDate, double budget, String venueId,
+	public Weddings(String weddingId, String weddingName, String weddingDate, double budget, String venueId,
 			String flortistId, String catererId, String musicianId, String photographId) {
 		super();
 		this.weddingId = weddingId;
@@ -58,7 +58,7 @@ public class Wedding {
 		this.photographId = photographId;
 	}
 
-	public Wedding(String weddingId) {
+	public Weddings(String weddingId) {
 		super();
 		this.weddingId = weddingId;
 	}
@@ -149,7 +149,7 @@ public class Wedding {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Wedding other = (Wedding) obj;
+		Weddings other = (Weddings) obj;
 		return Double.doubleToLongBits(budget) == Double.doubleToLongBits(other.budget)
 				&& Objects.equals(catererId, other.catererId) && Objects.equals(flortistId, other.flortistId)
 				&& Objects.equals(musicianId, other.musicianId) && Objects.equals(photographId, other.photographId)

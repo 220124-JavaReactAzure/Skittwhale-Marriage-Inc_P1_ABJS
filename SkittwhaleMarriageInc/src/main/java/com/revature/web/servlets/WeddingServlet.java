@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Services;
-import com.revature.models.Wedding;
+import com.revature.models.Weddings;
 import com.revature.services.ServicesService;
 import com.revature.services.UserService;
 import com.revature.services.WeddingService;
@@ -37,7 +37,6 @@ public class WeddingServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Services serv = new Service(servname, servname);
 		servOptions = servService.getAllServices();
 		String venues = "";
 		String caterers = "";
